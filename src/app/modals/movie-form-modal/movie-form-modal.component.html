@@ -1,0 +1,31 @@
+<div class="modal card" id="add-modal"
+[ngClass]="{visible : displayModal}"    
+>
+    <div class="modal__content">
+        <form [formGroup]="movieForm">
+            <label for="title">Movie Title</label>
+            <input type="text" formControlName="title" id="title"/>
+            <label for="image-url">Image URL</label>
+            <input type="text" formControlName="imageUrl" id="image-url" />
+            <label for="rating">Your Rating</label>
+            <input type="number" step="1" max="5" min="1" formControlName="rating" id="rating" />
+        </form>
+    </div>
+    <div class="modal__content" *ngIf="invalidInputs.length > 0">
+        <ul *ngFor="let item of invalidInputs">
+            <li>{{item}}</li>
+        </ul>
+    </div>
+    <div class="modal__actions">
+
+        <button class="button-56 btn-clear" role="button"
+            (click)="clearForm()
+        ">Clear</button>
+        <button class="button-56 btn-cancel" role="button"
+            (click)="closeModal()"
+        >Cancel</button>
+        <button class="button-56 btn-add" role="button"
+            (click)="onSubmit()"
+        >Add</button>
+    </div>
+</div>

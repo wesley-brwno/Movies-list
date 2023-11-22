@@ -6,5 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'movies-list';
+
+
+  exibirModal: boolean = false;
+
+  onDisplayModal($event: any) {
+    this.exibirModal = true;
+  }
+  onHideModal() {
+    this.exibirModal = false;
+  }
+  hideElements() {
+    this.exibirModal = false;
+  }
+
 }
