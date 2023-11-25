@@ -1,0 +1,116 @@
+.card {
+  display: flex;
+  border: 2px solid black;
+  padding: 0.8rem;
+  max-width: 400px;
+  min-width: 350px;
+  background-color: #F5F5F5;
+  border-radius: 35px 0;
+  margin-bottom: 1rem;
+}
+
+.card.isEven {
+  border-radius: 0 35px;
+}
+
+.card img {
+  width: auto;
+  height: 8rem;
+  min-width: 6rem;
+}
+
+.movie_info_contaniner {
+  padding-left: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.movie_info_contaniner h3 {
+  font-size: 1.3rem;
+}
+
+.rating {
+  background-size: 4.2rem;
+  background-repeat: no-repeat;
+  background-position: 5.2rem;
+}
+
+._5star{
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Star_rating_5_of_5.png/120px-Star_rating_5_of_5.png);
+}
+
+._4star{
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Star_rating_4_of_5.png/120px-Star_rating_4_of_5.png);
+}
+
+._3star{
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Star_rating_3_of_5.png/120px-Star_rating_3_of_5.png);
+}
+
+._2star{
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Star_rating_2_of_5.png/120px-Star_rating_2_of_5.png);
+}
+
+._1star{
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Star_rating_1_of_5.png/120px-Star_rating_1_of_5.png);
+}
+
+.button_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button_container button {
+  width: 45%;
+}
+
+
+/* CSS */
+.button-89 {
+  --b: 1px;
+  /* border thickness */
+  --s: .20em;
+  /* size of the corner */
+  --color: #373B44;
+
+  padding: calc(.2em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-89:hover,
+.button-89:focus-visible {
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.button-89:active {
+  background: var(--color);
+  color: #fff;
+}
+
+.edit_btn:hover {
+  background-color:  #72e6bf;
+  color: black;
+  font-weight: 800;
+}
+.delete_btn:hover {
+  background-color:  	#ffcdd5;
+  color: black;
+  font-weight: 800;
+}

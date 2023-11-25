@@ -1,0 +1,12 @@
+<section>
+    <header>
+        <h2>My movies list</h2>
+    </header>
+
+    <div *ngFor="let movie of moviesList; even as isEven">
+        <app-movie [movie]="movie" [isCardEven]="isEven"
+         (movieEmiter)="deleteMovie($event)"
+         (movieEditEmitter)="editMovie($event)"
+         ></app-movie>
+    </div>
+</section>

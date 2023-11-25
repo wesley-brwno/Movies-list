@@ -31,13 +31,14 @@ input:focus {
   position: fixed;
   width: 80%;
   max-width: 620px;
-  top: 30vh;
+  top: 15vh;
   left: 50%;
   transform: translateX(-50%);
   z-index: 100;
   border: 2px solid #111;
   box-shadow: 30px 35px 2px #111;
   display: none;
+  transition: 2s;
 }
 
 .form_group{

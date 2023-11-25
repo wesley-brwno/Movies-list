@@ -1,28 +1,35 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MovieDataInput } from 'src/app/interfaces/movie-data-input';
+import { MovieDataOutput } from 'src/app/interfaces/movie-data-output';
 
 @Component({
-  selector: 'app-movie-form-modal',
-  templateUrl: './movie-form-modal.component.html',
-  styleUrls: ['./movie-form-modal.component.css']
+  selector: 'app-edit-movie',
+  templateUrl: './edit-movie.component.html',
+  styleUrls: ['./edit-movie.component.css']
 })
-export class MovieFormModalComponent {
+export class EditMovieComponent implements OnInit{
   @Output() 
-  addedMovie: EventEmitter<MovieDataInput> = new EventEmitter<MovieDataInput>();
+  editedMovie: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>();
   @Input() 
   displayModal: boolean = false;
+  @Input()
+  movieToBeEdited: MovieDataOutput = {id: 1, title: '', imageUrl: '', rating: 0};
   movieForm: FormGroup;
   @Output() 
   hideModal: EventEmitter<void> = new EventEmitter();
   invalidInputs: Array<string> = [];
 
-  constructor(private formBuilder: FormBuilder) {
-    this.movieForm = this.formBuilder.group({
-      title: ['', Validators.required],
-      imageUrl: ['', Validators.required],
-      rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]]
+  constructor(private formBuilder:FormBuilder) {
+    this.movieForm = formBuilder.group({
+       title: ['', Validators.required],
+       imageUrl: ['', Validators.required],
+       rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]]
     });
+  }
+  ngOnInit(): void {
+    this.movieForm.controls['title'].setValue(this.movieToBeEdited.title);
+    this.movieForm.controls['imageUrl'].setValue(this.movieToBeEdited.imageUrl);
+    this.movieForm.controls['rating'].setValue(this.movieToBeEdited.rating);
   }
 
   clearForm() {
@@ -43,11 +50,12 @@ export class MovieFormModalComponent {
   onSubmit(): void {    
     if (this.isDataValid()) {
       const movieData = {
+        id: this.movieToBeEdited.id,
         title: this.movieForm.get('title')!.value,
         imageUrl: this.movieForm.get('imageUrl')!.value,
         rating: this.movieForm.get('rating')!.value
       };
-      this.addedMovie.emit(movieData);      
+      this.editedMovie.emit(movieData);      
       this.closeModal();
       return;
     }

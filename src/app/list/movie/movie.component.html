@@ -1,0 +1,24 @@
+<div class="card" [ngClass]="{'isEven': isCardEven}">
+    <img src="{{ movie.imageUrl }}" alt="{{ movie.title }}">
+    <div class="movie_info_contaniner">
+        <h3>{{ movie.title }}</h3>
+        <p [ngClass]="
+            {   
+                'rating': movie,
+                '_1star': movie.rating === 1,
+                '_2star': movie.rating === 2,
+                '_3star': movie.rating === 3,
+                '_4star': movie.rating === 4,
+                '_5star': movie.rating === 5,
+            }"
+        >Your rating: </p>
+        <div class="button_container">
+        <button class="button-89 edit_btn" role="button"
+            (click)="onEditClick(movie)"
+        >Edit</button>
+        <button class="button-89 delete_btn" role="button"
+            (click)="onDeleteClick(movie)"
+        >Delete</button>
+        </div>
+    </div>
+</div>
