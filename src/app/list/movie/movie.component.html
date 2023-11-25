@@ -2,6 +2,7 @@
     <img src="{{ movie.imageUrl }}" alt="{{ movie.title }}">
     <div class="movie_info_contaniner">
         <h3>{{ movie.title }}</h3>
+        <p>Created on: {{ movie.created_at | date: "dd MMM yyyy" }}</p>
         <p [ngClass]="
             {   
                 'rating': movie,

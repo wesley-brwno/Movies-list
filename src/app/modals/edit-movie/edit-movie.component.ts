@@ -13,7 +13,7 @@ export class EditMovieComponent implements OnInit{
   @Input() 
   displayModal: boolean = false;
   @Input()
-  movieToBeEdited: MovieDataOutput = {id: 1, title: '', imageUrl: '', rating: 0};
+  movieToBeEdited: MovieDataOutput = {id: 1, title: '', imageUrl: '', rating: 0, created_at: new Date().getFullYear};
   movieForm: FormGroup;
   @Output() 
   hideModal: EventEmitter<void> = new EventEmitter();
@@ -53,7 +53,8 @@ export class EditMovieComponent implements OnInit{
         id: this.movieToBeEdited.id,
         title: this.movieForm.get('title')!.value,
         imageUrl: this.movieForm.get('imageUrl')!.value,
-        rating: this.movieForm.get('rating')!.value
+        rating: this.movieForm.get('rating')!.value,
+        created_at: this.movieToBeEdited.created_at
       };
       this.editedMovie.emit(movieData);      
       this.closeModal();

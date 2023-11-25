@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MovieDataOutput } from 'src/app/interfaces/movie-data-output';
 
@@ -12,6 +13,7 @@ export class MovieComponent {
   @Input() isCardEven: boolean = false;
   @Output() movieEmiter: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>;
   @Output() movieEditEmitter:  EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>;
+
 
 
   onDeleteClick(movie: MovieDataOutput) {

@@ -1,6 +1,8 @@
 <section>
     <header>
-        <h2>My movies list</h2>
+        <app-order-movie 
+            (orderByNameEmitter)="onOrderByName()"
+            (orderByRatingEmitter)="onOderByRating()"></app-order-movie>
     </header>
 
     <div *ngFor="let movie of moviesList; even as isEven">

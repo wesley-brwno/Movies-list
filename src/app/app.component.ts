@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   exibitEditModal: boolean = false;
   movieToBeEdited!: MovieDataOutput;
   movieList!: Array<MovieDataOutput>;
+  deletedMovieList!: Array<MovieDataOutput>;
 
   ngOnInit(): void {
 
@@ -22,13 +23,15 @@ export class AppComponent implements OnInit {
       id: 1,
       title: "The Shawshank Redemption",
       imageUrl: "https://upload.wikimedia.org/wikipedia/pt/thumb/7/7f/Kimi-no-Na-wa-poster.jpg/240px-Kimi-no-Na-wa-poster.jpg",
-      rating: 5
+      rating: 5,
+      created_at: new Date()
     },
     {
       id: 2,
       title: "The Empire of Corpses",
       imageUrl: "https://m.media-amazon.com/images/M/MV5BMjY5MjkxMjMtYjcwZC00MDUyLWIzMWMtZTc3MzA5OGQyMGUzXkEyXkFqcGdeQXVyNjUyOTYyNTM@._V1_.jpg",
-      rating: 1
+      rating: 1,
+      created_at: new Date()
     }];
   }
 
@@ -61,7 +64,8 @@ export class AppComponent implements OnInit {
         id: this.movieList.length + 1,
         title: movieInput.title,
         imageUrl: movieInput.imageUrl,
-        rating: movieInput.rating
+        rating: movieInput.rating,
+        created_at: new Date()
       }
     );
   }
@@ -69,6 +73,7 @@ export class AppComponent implements OnInit {
   onDeleteMovie(movie: MovieDataOutput) {
     let index = this.movieList.indexOf(movie);   
     this.movieList.splice(index, 1);
+    this.deletedMovieList.push(movie);
   }
   
   onEditMovie(movie: MovieDataOutput) {
