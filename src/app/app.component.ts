@@ -9,12 +9,14 @@ import { MovieDataOutput } from './interfaces/movie-data-output';
 })
 export class AppComponent implements OnInit {
 
-  isBackDropActive: boolean = false;
+
   exibirModal: boolean = false;
   exibitEditModal: boolean = false;
+  isBackDropActive: boolean = false;
   movieToBeEdited!: MovieDataOutput;
   movieList!: Array<MovieDataOutput>;
-  deletedMovieList!: Array<MovieDataOutput>;
+  movieExcludedList: Array<MovieDataOutput> = new Array<MovieDataOutput>();
+
 
   ngOnInit(): void {
 
@@ -70,14 +72,32 @@ export class AppComponent implements OnInit {
     );
   }
 
-  onDeleteMovie(movie: MovieDataOutput) {
-    let index = this.movieList.indexOf(movie);   
-    this.movieList.splice(index, 1);
-    this.deletedMovieList.push(movie);
+  onDeleteMovie(movie: MovieDataOutput) {    
+    if (!movie.is_deleted) {
+      let index = this.movieList.indexOf(movie);   
+      this.movieList.splice(index, 1);
+      movie.is_deleted = true;
+      this.movieExcludedList.push(movie);
+      return;
+    }
+    let index = this.movieExcludedList.indexOf(movie);
+    this.movieExcludedList.splice(index, 1);
   }
   
   onEditMovie(movie: MovieDataOutput) {
     let index = this.movieList.findIndex((m) => m.id === movie.id);
     this.movieList[index] = movie;  
+  }
+
+  onRestoreMovie(movie: MovieDataOutput) {
+    let index = this.movieExcludedList.indexOf(movie);
+    this.movieExcludedList.splice(index, 1);
+    delete movie.is_deleted;
+    this.movieList.push(movie);
+  }
+
+  onToggleFav(movie: MovieDataOutput) {
+    let index = this.movieList.indexOf(movie);   
+    this.movieList[index] = movie;
   }
 }

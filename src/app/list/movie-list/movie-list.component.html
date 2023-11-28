@@ -1,14 +1,32 @@
-<section>
-    <header>
-        <app-order-movie 
-            (orderByNameEmitter)="onOrderByName()"
-            (orderByRatingEmitter)="onOderByRating()"></app-order-movie>
-    </header>
+<section class="lists_container">
 
-    <div *ngFor="let movie of moviesList; even as isEven">
-        <app-movie [movie]="movie" [isCardEven]="isEven"
-         (movieEmiter)="deleteMovie($event)"
-         (movieEditEmitter)="editMovie($event)"
-         ></app-movie>
-    </div>
+
+    <section class="main_list_container">
+        <header>
+            <app-order-movie 
+                (orderByNameEmitter)="onOrderByName()"
+                (orderByRatingEmitter)="onOderByRating()"
+            ></app-order-movie>
+        </header>
+        <div *ngFor="let movie of moviesList; even as isEven">
+            <app-movie [movie]="movie" [isCardEven]="isEven"
+             (movieFavEmitter)="toggleFavourite($event)"
+             (movieEmiter)="deleteMovie($event)"
+             (movieEditEmitter)="editMovie($event)"
+             ></app-movie>
+        </div>
+    </section>
+
+    <section class="secundary_list_container">
+        <div>
+            fav / deled
+        </div>
+        <div *ngFor="let movie of moviesExcludedList">
+            <app-excluded-movie [movie]="movie"
+            (movieDeleteEmitter)="deleteMovie($event)"
+            (movieEmiter)="restoreMovie($event)">
+            </app-excluded-movie>
+        </div>
+    </section>
+
 </section>

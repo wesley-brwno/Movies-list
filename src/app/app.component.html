@@ -1,26 +1,33 @@
 <app-header (exibitModal)="onDisplayModal($event)"></app-header>
 
-<app-movie-form-modal 
-    [displayModal]="exibirModal"
-    (hideModal)="onHideModal()"
-    (addedMovie)="onAddNewMovie($event)"
+<app-movie-form-modal
+  [displayModal]="exibirModal"
+  (hideModal)="onHideModal()"
+  (addedMovie)="onAddNewMovie($event)"
 ></app-movie-form-modal>
 
-<app-edit-movie *ngIf="exibitEditModal"
-    (editedMovie)="onEditMovie($event)"
-    [movieToBeEdited]="movieToBeEdited"
-    (hideModal)="onHideModal()"
-    [displayModal]="exibitEditModal">
+<app-edit-movie
+  *ngIf="exibitEditModal"
+  (editedMovie)="onEditMovie($event)"
+  [movieToBeEdited]="movieToBeEdited"
+  (hideModal)="onHideModal()"
+  [displayModal]="exibitEditModal"
+>
 </app-edit-movie>
 
-<div id="backdrop"
-    [ngClass]="{visible: isBackDropActive}"
-    (click)="hideElements()"
+<div
+  id="backdrop"
+  [ngClass]="{ visible: isBackDropActive }"
+  (click)="hideElements()"
 ></div>
 
 <app-movie-list
-    [moviesList]="movieList"
-    (movieToBeDeleted)= "onDeleteMovie($event)"
-    (movieToBeEdited)="onDisplayEditModal($event)"
+  [moviesList]="movieList"
+  [moviesExcludedList]="movieExcludedList"
+  (movieToBeDeleted)="onDeleteMovie($event)"
+  (movieToBeEdited)="onDisplayEditModal($event)"
+  (movieToBeRestored)="onRestoreMovie($event)"
+  (movieToToggleFav)="onToggleFav($event)"
 ></app-movie-list>
+
 <app-footer></app-footer>

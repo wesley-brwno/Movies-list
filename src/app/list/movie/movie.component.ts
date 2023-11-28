@@ -13,6 +13,7 @@ export class MovieComponent {
   @Input() isCardEven: boolean = false;
   @Output() movieEmiter: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>;
   @Output() movieEditEmitter:  EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>;
+  @Output() movieFavEmitter:  EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>;
 
 
 
@@ -23,5 +24,15 @@ export class MovieComponent {
   onEditClick(movie: MovieDataOutput) {
     //todo create confirm edit modal
     this.movieEditEmitter.emit(movie);
+  }
+
+  onFavoriteClick(movie: MovieDataOutput) {
+    if(!movie.is_favourite) {
+      movie.is_favourite = true;
+      this.movieFavEmitter.emit(movie);
+      return;
+    }
+    delete movie.is_favourite;
+    this.movieFavEmitter.emit(movie);
   }
 }

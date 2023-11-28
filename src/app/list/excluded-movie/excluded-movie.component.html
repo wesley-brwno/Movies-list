@@ -13,21 +13,13 @@
                 '_5star': movie.rating === 5,
             }"
         >Your rating: </p>
-        <button class="button-48" role="button"
-            (click)="onFavoriteClick(movie)"
-            [ngClass]="{'isFavourite' : movie.is_favourite, 'noFavourite' : !movie.is_favourite}"
-        >
-            <span class="text"
-            >Favourite:&nbsp;</span>
-        </button>
-
         <div class="button_container">
-            <button class="button-89 edit_btn" role="button"
-                (click)="onEditClick(movie)"
-            >Edit</button>
-            <button class="button-89 delete_btn" role="button"
-                (click)="onDeleteClick(movie)"
-            >Delete</button>
+        <button class="button-89 edit_btn" role="button"
+        (click)="onRestoreClick(movie)"
+        >Restore</button>
+        <button class="button-89 delete_btn" role="button"
+            (click)="onDeleteClick(movie)"
+        >Delete</button>
         </div>
     </div>
 </div>

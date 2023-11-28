@@ -1,0 +1,20 @@
+.lists_container {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    height: 80vh;
+}
+
+.main_list_container {
+    min-width: 430px;
+    border: 2px solid black;
+    padding: 1rem;
+}
+
+.secundary_list_container {
+    min-width: 430px;
+    border: 2px solid black;
+    padding: 1rem;
+
+}
+

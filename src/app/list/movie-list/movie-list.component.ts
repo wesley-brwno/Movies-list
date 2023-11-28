@@ -8,11 +8,12 @@ import { MovieDataOutput } from 'src/app/interfaces/movie-data-output';
 })
 export class MovieListComponent implements OnChanges{
 
-
-
   @Input() moviesList: Array<MovieDataOutput> = [];
+  @Input() moviesExcludedList: Array<MovieDataOutput> = [];
   @Output() movieToBeDeleted: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>;
   @Output() movieToBeEdited: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>;
+  @Output() movieToBeRestored: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>();
+  @Output() movieToToggleFav: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>();
 
   ngOnChanges(changes: SimpleChanges): void {
 
@@ -22,8 +23,17 @@ export class MovieListComponent implements OnChanges{
   deleteMovie($event: MovieDataOutput) {
     this.movieToBeDeleted.emit($event);
   }
+
   editMovie($event: MovieDataOutput) {
     this.movieToBeEdited.emit($event);
+  }
+
+  restoreMovie($event: MovieDataOutput) {
+    this.movieToBeRestored.emit($event);
+  }
+
+  toggleFavourite($event: MovieDataOutput) {
+    this.movieToToggleFav.emit($event);
   }
 
   onOrderByName() {
@@ -43,10 +53,8 @@ export class MovieListComponent implements OnChanges{
       this.moviesList.reverse();
     } 
   }
-    
-
+  
   compareLists(listA: Array<MovieDataOutput>, listB: Array<MovieDataOutput>) {
     return JSON.stringify(listA) === JSON.stringify(listB);
-  }
-    
+  }  
 }

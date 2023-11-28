@@ -6,4 +6,6 @@ export interface MovieDataOutput {
     imageUrl: string;
     rating: number;
     created_at: any;
+    is_deleted?: boolean;
+    is_favourite?: boolean;
 }
