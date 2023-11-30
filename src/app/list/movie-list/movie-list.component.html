@@ -1,6 +1,5 @@
 <section class="lists_container">
 
-
     <section class="main_list_container">
         <header>
             <app-order-movie 
@@ -17,16 +16,65 @@
         </div>
     </section>
 
-    <section class="secundary_list_container">
-        <div>
-            fav / deled
+    <section class="secundary_list_container" 
+        [ngClass]="{'fav_list' : toggleList == 'favourite-list', 'bin_list' : toggleList == 'removed-list'}"
+    >
+        <div class="btn_container">
+            <div>
+                <button class="button-49 btn_fav" role="button"
+                    (click)="toggleList = 'favourite-list'"
+                >Favourites</button>
+            </div>
+            <div>
+                <button class="button-49 btn_bin" role="button"
+                    (click)="toggleList =  'removed-list'"
+                >Bin</button>
+            </div>
         </div>
-        <div *ngFor="let movie of moviesExcludedList">
-            <app-excluded-movie [movie]="movie"
-            (movieDeleteEmitter)="deleteMovie($event)"
-            (movieEmiter)="restoreMovie($event)">
-            </app-excluded-movie>
-        </div>
-    </section>
 
+        <div *ngIf="toggleList === 'favourite-list'; else removed_list">
+            <div *ngIf="moviesFavList.length !== 0; else no_favourites">
+                <div *ngFor="let movie of moviesFavList; even as isEven">
+                    <app-movie [movie]="movie" [isCardEven]="isEven"
+                        (movieFavEmitter)="toggleFavourite($event)"
+                        (movieEmiter)="deleteMovie($event)"
+                        (movieEditEmitter)="editMovie($event)"
+                    ></app-movie>
+                </div>
+            </div>
+            <ng-template #no_favourites>
+                <div class="no_favourites">
+                    <img width="100" height="100" src="https://img.icons8.com/dusk/100/bookmark-ribbon.png" alt="bookmark-ribbon"/>
+                    <h2>No favourites yet</h2>
+                    <p>You can add favourites by cliking in the favourite icon!</p>
+                </div>
+            </ng-template>
+        </div>
+
+        <ng-template #removed_list>
+            <div *ngIf="moviesExcludedList.length !== 0; else no_excluded">
+                <div *ngFor="let movie of moviesExcludedList">
+                    <app-excluded-movie [movie]="movie"
+                        (movieDeleteEmitter)="onDeleteFromBin($event)"
+                        (movieEmiter)="restoreMovie($event)">
+                    </app-excluded-movie>
+                </div>
+            </div>
+            <ng-template #no_excluded>
+                <div class="no_excluded">
+                    <img width="100" height="100" src="https://img.icons8.com/dusk/100/recycle-bin.png" alt="recycle-bin"/>
+                    <h2>There's nothing here!</h2>
+                </div>
+            </ng-template>
+        </ng-template>
+    </section>
 </section>
+
+<app-modal-delete-movie
+    [displayModal]="displayConfirmModal"
+    (deleteMovie)="onConfirmDeletion($event)"
+></app-modal-delete-movie>
+<div id="backdrop"
+  [ngClass]="{ visible: displayConfirmModal }"
+  (click)="hideConfimModalAndBackDrop()"
+></div>

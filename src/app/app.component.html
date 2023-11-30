@@ -12,8 +12,7 @@
   [movieToBeEdited]="movieToBeEdited"
   (hideModal)="onHideModal()"
   [displayModal]="exibitEditModal"
->
-</app-edit-movie>
+></app-edit-movie>
 
 <div
   id="backdrop"
@@ -23,6 +22,7 @@
 
 <app-movie-list
   [moviesList]="movieList"
+  [moviesFavList]="moviesFavList"
   [moviesExcludedList]="movieExcludedList"
   (movieToBeDeleted)="onDeleteMovie($event)"
   (movieToBeEdited)="onDisplayEditModal($event)"
