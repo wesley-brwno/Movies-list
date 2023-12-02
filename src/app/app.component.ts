@@ -99,24 +99,41 @@ export class AppComponent implements OnInit {
     return [
       {
         id: 1,
-        title: "The Shawshank Redemption",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/pt/thumb/7/7f/Kimi-no-Na-wa-poster.jpg/240px-Kimi-no-Na-wa-poster.jpg",
-        rating: 5,
+        title: "Alita: Battle Angel",
+        imageUrl: "https://br.web.img3.acsta.net/c_310_420/pictures/19/01/31/11/55/2714336.jpg",
+        rating: 4,
         created_at: new Date()
       },
       {
-        id: 2,
-        title: "The Empire of Corpses",
-        imageUrl: "https://m.media-amazon.com/images/M/MV5BMjY5MjkxMjMtYjcwZC00MDUyLWIzMWMtZTc3MzA5OGQyMGUzXkEyXkFqcGdeQXVyNjUyOTYyNTM@._V1_.jpg",
-        rating: 1,
-        created_at: new Date()
-      },
-      {
-        id: 3,
+        id: 7,
         title: "Puss in Boots: The Last Wish",
         imageUrl: "https://play-lh.googleusercontent.com/oiOeeMjfYLLSMMdMllZKqlPu57XMJfisSHBa3G3FD6JlCkfua5jYbhdLIgdl9YAObw4lAwxO-jDUyXp8mcI",
         rating: 5,
-        created_at: new Date()
+        created_at: new Date(),
+        is_favourite: true
+      },
+      {
+        id: 6,
+        title: "Flipped",
+        imageUrl: "https://d3tvwjfge35btc.cloudfront.net/Assets/25/703/L_p0015270325.jpg",
+        rating: 5,
+        created_at: new Date(),
+        is_favourite: true
+      },
+      {
+        id: 8,
+        title: "Blade Runner 2049",
+        imageUrl: "https://br.web.img3.acsta.net/c_310_420/pictures/17/08/25/11/58/463146.jpg",
+        rating: 4,
+        created_at: new Date(),
+        is_favourite: true
+      },
+      {
+        id: 5,
+        title: "Scooby-Doo on Zombie Island",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Scooby-doo-on-zombie-island.jpg/220px-Scooby-doo-on-zombie-island.jpg",
+        rating: 3,
+        created_at: new Date(),
       },
       {
         id: 4,
@@ -126,19 +143,33 @@ export class AppComponent implements OnInit {
         created_at: new Date()
       },
       {
-        id: 5,
-        title: "Scooby-Doo on Zombie Island",
-        imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Scooby-doo-on-zombie-island.jpg/220px-Scooby-doo-on-zombie-island.jpg",
+        id: 2,
+        title: "Your Name",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/pt/thumb/7/7f/Kimi-no-Na-wa-poster.jpg/240px-Kimi-no-Na-wa-poster.jpg",
+        rating: 5,
+        created_at: new Date()
+      },
+      {
+        id: 3,
+        title: "The Empire of Corpses",
+        imageUrl: "https://m.media-amazon.com/images/M/MV5BMjY5MjkxMjMtYjcwZC00MDUyLWIzMWMtZTc3MzA5OGQyMGUzXkEyXkFqcGdeQXVyNjUyOTYyNTM@._V1_.jpg",
+        rating: 1,
+        created_at: new Date()
+      },
+      {
+        id: 9,
+        title: "All Quiet on the Western Front",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/All_quiet_on_the_western_front_%282022_film%29.jpg/220px-All_quiet_on_the_western_front_%282022_film%29.jpg",
         rating: 3,
         created_at: new Date()
       },
       {
-        id: 6,
-        title: "Flipped",
-        imageUrl: "https://d3tvwjfge35btc.cloudfront.net/Assets/25/703/L_p0015270325.jpg",
+        id: 10,
+        title: "A Silent Voice",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/pt/thumb/4/47/Koe-no-Katachi-poster-film.jpg/240px-Koe-no-Katachi-poster-film.jpg",
         rating: 5,
         created_at: new Date()
-      }
+      },
     ];
   }
 }
