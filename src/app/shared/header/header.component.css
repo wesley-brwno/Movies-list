@@ -3,9 +3,10 @@ header {
     height: 4rem;
     display: flex;
     justify-content: space-between;
+    padding: 0 2rem;
     align-items: center;
-    padding: 0 2.5rem;
-    background: #00329e;
+    background: linear-gradient(89.99deg, #234D49 0.46%, #495F86 24.82%, #25A6BB 44.52%, #0ABAD4 62.67%, #03AAC0 82.36%, #058490 99.99%) #495F86;
+
 }
 
 header h1 {
@@ -17,12 +18,14 @@ header h1 {
 header button {
     font: inherit;
     padding: 0.5rem 1rem;
-    background: #f67722;
-    border: 1px solid #f67722;
+    background: #66b366;
+    border: 2px solid black;
+    font-weight: 900;
     color: white;
     border-radius: 6px;
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.26);
     cursor: pointer;
+    transition: 300ms;
 }
 
 header button:hover,

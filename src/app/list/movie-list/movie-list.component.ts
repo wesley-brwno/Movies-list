@@ -15,11 +15,13 @@ export class MovieListComponent implements OnInit {
   @Output() movieToBeEdited: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>;
   @Output() movieToBeRestored: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>();
   @Output() movieToToggleFav: EventEmitter<MovieDataOutput> = new EventEmitter<MovieDataOutput>();
-  toggleList: string = 'favourite-list';
   displayConfirmModal: boolean = false;
   modalAnswer: boolean = false;
   movieToBeRemovedFromBin!: MovieDataOutput;
-
+  moviesSeachedList: MovieDataOutput[] = [];
+  toggleList: string = 'favourite-list';
+  sectionHref: string = '#main_list';
+  toggleSecion: boolean = false;
   
   ngOnInit(): void {
     
@@ -27,6 +29,18 @@ export class MovieListComponent implements OnInit {
 
   deleteMovie($event: MovieDataOutput) {
     this.movieToBeDeleted.emit($event);
+  }
+
+  editMovie($event: MovieDataOutput) {
+    this.movieToBeEdited.emit($event);
+  }
+
+  getListHref(sectionId: string): string {
+    return sectionId;
+  }
+
+  hideConfimModalAndBackDrop() {
+    this.displayConfirmModal = false;
   }
 
   onConfirmDeletion(deleteMovie: boolean) {
@@ -38,50 +52,36 @@ export class MovieListComponent implements OnInit {
     this.hideConfimModalAndBackDrop();
   }
 
+  onChangeHref() {    
+    if(this.sectionHref === '#main_list') {
+      this.sectionHref = '#secondary_list';
+      return;
+    }
+    this.sectionHref = '#main_list';
+  }
+
   onDeleteFromBin($event: MovieDataOutput) {
     this.movieToBeRemovedFromBin = $event;
     this.showConfirmModal();
   }
 
-  editMovie($event: MovieDataOutput) {
-    this.movieToBeEdited.emit($event);
+  onFilterList($event: MovieDataOutput[]) {    
+    this.moviesSeachedList = $event;
+  }
+
+  onToggleSection() {
+    this.toggleSecion = !this.toggleSecion;
   }
 
   restoreMovie($event: MovieDataOutput) {
     this.movieToBeRestored.emit($event);
   }
 
+  showConfirmModal() {
+    this.displayConfirmModal = true;
+  } 
+
   toggleFavourite($event: MovieDataOutput) {
     this.movieToToggleFav.emit($event);      
   }
-
-  onOrderByName() {
-    const listBeforeChange = this.moviesList.slice();
-    this.moviesList.sort((a, b) => a.title.localeCompare(b.title));
-    
-    if(this.compareLists(listBeforeChange, this.moviesList)) {
-      this.moviesList.reverse();
-    } 
-  }
-
-  onOderByRating() {
-    const listBeforeChange = this.moviesList.slice();
-    this.moviesList.sort((a, b) => a.rating - b.rating);
-
-    if(this.compareLists(listBeforeChange, this.moviesList)) {
-      this.moviesList.reverse();
-    } 
-  }
-
-  showConfirmModal() {
-    this.displayConfirmModal = true;
-  }
-
-  hideConfimModalAndBackDrop() {
-    this.displayConfirmModal = false;
-  }
-  
-  compareLists(listA: Array<MovieDataOutput>, listB: Array<MovieDataOutput>) {
-    return JSON.stringify(listA) === JSON.stringify(listB);
-  }  
 }

@@ -6,6 +6,7 @@ import { OrderMovieComponent } from './movie-list/order-movie/order-movie.compon
 import { ExcludedMovieComponent } from './excluded-movie/excluded-movie.component';
 import { DeleteMovieComponent } from '../modals/delete-movie/delete-movie.component';
 import { ModalsModule } from '../modals/modals.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,11 +18,13 @@ import { ModalsModule } from '../modals/modals.module';
     ExcludedMovieComponent
   ],
   exports: [
-    MovieListComponent
+    MovieListComponent,
+    OrderMovieComponent
   ],
   imports: [
     CommonModule,
-    ModalsModule
+    ModalsModule,
+    FormsModule
   ]
 })
 export class ListModule { }

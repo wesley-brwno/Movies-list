@@ -1,7 +1,13 @@
 footer {
-    background-color: #00329e;
+    background: linear-gradient(89.99deg, #234D49 0.46%, #495F86 24.82%, #25A6BB 44.52%, #0ABAD4 62.67%, #03AAC0 82.36%, #058490 99.99%) #495F86;
     text-align: center;
-    bottom: 0px;
-    width: 100vw;
-    display: none;
+    width: 100%;
+    padding-bottom: 0.5rem;
+}
+
+footer p {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: 900;
+    padding: 0.8rem;
 }

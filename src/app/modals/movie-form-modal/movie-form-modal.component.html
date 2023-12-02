@@ -7,8 +7,34 @@
             <input type="text" formControlName="title" id="title"/>
             <label for="image-url">Image URL</label>
             <input type="text" formControlName="imageUrl" id="image-url" />
-            <label for="rating">Your Rating</label>
-            <input type="number" step="1" max="5" min="1" formControlName="rating" id="rating"/>
+
+            <span>Your Rating</span>
+            <div class="radio_container">
+                <label>
+                    <input type="radio" id="one_star" formControlName="rating" value="1">
+                    1 &starf;
+                </label>
+                
+                <label>
+                    <input type="radio" id="two_star" value="2" formControlName="rating">
+                    2 &starf;&starf;
+                </label>
+
+                <label>
+                    <input type="radio" id="three_star" value="3" formControlName="rating">
+                    3 &starf;&starf;&starf;
+                </label>
+
+                <label>
+                    <input type="radio" id="four_star" value="4" formControlName="rating">
+                    4 &starf;&starf;&starf;&starf; 
+                </label>
+
+                <label>
+                    <input type="radio" id="five_star" value="5" formControlName="rating">
+                    5 &starf;&starf;&starf;&starf;&starf;
+                </label>
+            </div>
         </form>
     </div>
     <div class="modal__content" *ngIf="invalidInputs.length > 0">

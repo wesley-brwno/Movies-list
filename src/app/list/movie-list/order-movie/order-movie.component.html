@@ -1,3 +1,11 @@
 <div class="ordering_container">
-    <p>Oder list by: <span (click)="onOrderbyNameClick()"> name</span> <span> data</span><span (click)="onOrderbyRatingClick()"> rating</span></p>
+    <p>List by: 
+        <span (click)="onOrderByName()">name</span> 
+        <span (click)="onOderByDate()">date</span>
+        <span (click)="onOderByRating()">rating</span>
+    </p>
+    <input type="search" placeholder="search title"
+        [(ngModel)]="searchMovie"
+        (keydown)="onMovieSearch()"
+    >
 </div>

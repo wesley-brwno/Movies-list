@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MovieDataInput } from 'src/app/interfaces/movie-data-input';
 
 @Component({
@@ -21,7 +21,7 @@ export class MovieFormModalComponent {
     this.movieForm = this.formBuilder.group({
       title: ['', Validators.required],
       imageUrl: ['', Validators.required],
-      rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]]
+      rating:  new FormControl('5')
     });
   }
 
@@ -45,8 +45,9 @@ export class MovieFormModalComponent {
       const movieData = {
         title: this.movieForm.get('title')!.value,
         imageUrl: this.movieForm.get('imageUrl')!.value,
-        rating: this.movieForm.get('rating')!.value
+        rating: Number(this.movieForm.get('rating')!.value)
       };
+      
       this.addedMovie.emit(movieData);      
       this.closeModal();
       return;
@@ -66,17 +67,5 @@ export class MovieFormModalComponent {
     if(!this.movieForm.get('rating')?.valid) {
       this.invalidInputs.push("Rating must be between 1 and 5!");
     }    
-  }
-
-  get imageUrl(): string {
-    return this.movieForm.get('imageUrl')!.value;
-  }
-
-  get rating(): string {
-    return this.movieForm.get('rating')!.value;
-  }
-
-  get title(): string {
-    return this.movieForm.get('title')!.value;
   }
 }

@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   onAddNewMovie(movieInput: MovieDataInput) {
-    this.movieList.push(
+    this.movieList.unshift(
       {
         id: this.movieList.length + 1,
         title: movieInput.title,

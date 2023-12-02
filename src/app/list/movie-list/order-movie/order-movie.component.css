@@ -1,0 +1,31 @@
+.ordering_container {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0 1rem;
+    width: 100%;
+}
+
+
+div input,
+p span {
+    display: inline-block;
+    background-color: #e6e6ff;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+    margin-left: 0.5rem;
+    padding: 4px;
+    font-weight: 400;
+    border-radius: 0 15px 0 15px;
+    text-align: center;
+}
+
+div input {
+    width: 90px;
+    border: none;
+}
+
+div input:hover,
+p span:hover{
+    background-color: #8b8bec;
+    border: none;
+}
+

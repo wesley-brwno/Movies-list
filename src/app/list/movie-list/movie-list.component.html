@@ -1,23 +1,36 @@
 <section class="lists_container">
-
-    <section class="main_list_container">
+    <section class="main_list_container" id="main_list"
+        [ngClass]="{'noVisibleSection': toggleSecion}"
+    >
         <header>
-            <app-order-movie 
-                (orderByNameEmitter)="onOrderByName()"
-                (orderByRatingEmitter)="onOderByRating()"
+            <app-order-movie
+             [moviesList]="moviesList"
+             (searchedMoviesListEmitter)="onFilterList($event)"
             ></app-order-movie>
         </header>
-        <div *ngFor="let movie of moviesList; even as isEven">
-            <app-movie [movie]="movie" [isCardEven]="isEven"
-             (movieFavEmitter)="toggleFavourite($event)"
-             (movieEmiter)="deleteMovie($event)"
-             (movieEditEmitter)="editMovie($event)"
-             ></app-movie>
+        <div *ngIf="!(moviesSeachedList.length > 0); else searchList">
+            <div *ngFor="let movie of moviesList; even as isEven">
+                <app-movie [movie]="movie" [isCardEven]="isEven"
+                 (movieFavEmitter)="toggleFavourite($event)"
+                 (movieEmiter)="deleteMovie($event)"
+                 (movieEditEmitter)="editMovie($event)"
+                 ></app-movie>
+            </div>
         </div>
+        <ng-template #searchList>
+            <div *ngFor="let movie of moviesSeachedList; even as isEven">
+                <app-movie [movie]="movie" [isCardEven]="isEven"
+                 (movieFavEmitter)="toggleFavourite($event)"
+                 (movieEmiter)="deleteMovie($event)"
+                 (movieEditEmitter)="editMovie($event)"
+                 ></app-movie>
+            </div>
+        </ng-template>
+
     </section>
 
-    <section class="secundary_list_container" 
-        [ngClass]="{'fav_list' : toggleList == 'favourite-list', 'bin_list' : toggleList == 'removed-list'}"
+    <section class="secondary_list_container" id="secondary_list" 
+        [ngClass]="{'fav_list' : toggleList == 'favourite-list', 'bin_list' : toggleList == 'removed-list', 'noVisibleSection' : !toggleSecion}"
     >
         <div class="btn_container">
             <div>
@@ -53,8 +66,8 @@
 
         <ng-template #removed_list>
             <div *ngIf="moviesExcludedList.length !== 0; else no_excluded">
-                <div *ngFor="let movie of moviesExcludedList">
-                    <app-excluded-movie [movie]="movie"
+                <div *ngFor="let movie of moviesExcludedList; even as isEven">
+                    <app-excluded-movie [movie]="movie" [isCardEven]="isEven"
                         (movieDeleteEmitter)="onDeleteFromBin($event)"
                         (movieEmiter)="restoreMovie($event)">
                     </app-excluded-movie>
@@ -68,6 +81,15 @@
             </ng-template>
         </ng-template>
     </section>
+
+    <div class="toggleSection" (click)="onToggleSection()">
+        <img *ngIf="toggleSecion; else bin_fav"
+            width="35" height="35" src="https://img.icons8.com/dusk/64/movies-folder.png" alt="movies-folder"/>
+        <ng-template #bin_fav>
+            <img width="35" height="35" src="https://img.icons8.com/dusk/64/recycle-bin.png" alt="recycle-bin"/>
+            <img width="35" height="35" src="https://img.icons8.com/dusk/64/bookmark-ribbon.png" alt="bookmark-ribbon"/>
+        </ng-template>
+    </div>
 </section>
 
 <app-modal-delete-movie
